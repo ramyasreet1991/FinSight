@@ -22,7 +22,7 @@ const navigation = [
   { name: 'Trading', href: '/trading', icon: Activity },
   { name: 'Backtest', href: '/backtest', icon: Play },
   { name: 'Feed Integration', href: '/feeds', icon: Rss },
-  { name: 'Nifty Momentum', href: '/nifty-momentum', icon: Zap },
+  { name: 'Smallcap Momentum', href: '/nifty-momentum', icon: Zap },
   { name: 'Disclaimer', href: '/disclaimer', icon: AlertTriangle },
   { name: 'Settings', href: '/settings', icon: Settings },
 ]

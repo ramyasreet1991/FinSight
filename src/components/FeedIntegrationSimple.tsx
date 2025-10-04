@@ -66,9 +66,9 @@ const FeedIntegrationSimple: React.FC = () => {
         <h3 className="text-lg font-semibold mb-4">Sample Recommendations</h3>
         <div className="space-y-3">
           {[
-            { symbol: 'RELIANCE', name: 'Reliance Industries Ltd', price: 2456.50, change: '+23.40', recommendation: 'BUY', source: 'Liquide' },
-            { symbol: 'TCS', name: 'Tata Consultancy Services Ltd', price: 3421.80, change: '-15.20', recommendation: 'HOLD', source: 'StockEdge' },
-            { symbol: 'HDFCBANK', name: 'HDFC Bank Ltd', price: 1567.30, change: '+12.80', recommendation: 'BUY', source: 'Zerodha' }
+            { symbol: 'BALRAMCHIN', name: 'Balrampur Chini Mills Ltd', price: 456.50, change: '+23.40', recommendation: 'BUY', source: 'Liquide' },
+            { symbol: 'BATAINDIA', name: 'Bata India Ltd', price: 1821.80, change: '+15.20', recommendation: 'BUY', source: 'StockEdge' },
+            { symbol: 'BHEL', name: 'Bharat Heavy Electricals Ltd', price: 267.30, change: '+12.80', recommendation: 'BUY', source: 'Zerodha' }
           ].map((stock, index) => (
             <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
               <div className="flex items-center space-x-4">
@@ -95,21 +95,21 @@ const FeedIntegrationSimple: React.FC = () => {
         </div>
       </Card>
 
-      {/* Nifty Momentum Filter */}
+      {/* Nifty Smallcap Momentum Quality Filter */}
       <Card className="p-4">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold">Nifty Momentum Stocks</h3>
+          <h3 className="text-lg font-semibold">Nifty Smallcap 250 Momentum Quality 100 Stocks</h3>
           <Badge variant="outline" className="bg-blue-100 text-blue-800">
-            30 Stocks
+            100 Stocks
           </Badge>
         </div>
         <div className="flex flex-wrap gap-2">
-          {['RELIANCE', 'TCS', 'HDFCBANK', 'INFY', 'HINDUNILVR', 'ITC', 'SBIN', 'BHARTIARTL', 'KOTAKBANK', 'LT'].map((stock, index) => (
+          {['BALRAMCHIN', 'BATAINDIA', 'BHEL', 'COALINDIA', 'DIVISLAB', 'EICHERMOT', 'GAIL', 'HINDALCO', 'INDUSINDBK', 'JSWSTEEL'].map((stock, index) => (
             <Badge key={index} variant="secondary" className="cursor-pointer hover:bg-blue-200">
               {stock}
             </Badge>
           ))}
-          <Badge variant="outline">+20 more</Badge>
+          <Badge variant="outline">+90 more</Badge>
         </div>
       </Card>
     </div>

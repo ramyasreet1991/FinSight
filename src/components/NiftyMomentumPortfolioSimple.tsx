@@ -9,8 +9,8 @@ const NiftyMomentumPortfolioSimple: React.FC = () => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Nifty Momentum Portfolio</h2>
-          <p className="text-gray-600">Curated portfolio of high-momentum Nifty 50 stocks</p>
+          <h2 className="text-2xl font-bold text-gray-900">Nifty Smallcap 250 Momentum Quality 100</h2>
+          <p className="text-gray-600">Curated portfolio of high-momentum small-cap stocks from NIFTY Smallcap250 Momentum Quality 100 Index</p>
         </div>
         <Button variant="outline">
           Refresh
@@ -88,16 +88,16 @@ const NiftyMomentumPortfolioSimple: React.FC = () => {
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold">Current Portfolio (5 stocks)</h3>
           <Badge className="bg-blue-100 text-blue-800">
-            Nifty Momentum
+            Smallcap Momentum Quality
           </Badge>
         </div>
         <div className="space-y-3">
           {[
-            { symbol: 'RELIANCE', name: 'Reliance Industries Ltd', price: 2456.50, change: '+23.40', changePercent: 0.96, recommendation: 'BUY', risk: 'MEDIUM' },
-            { symbol: 'TCS', name: 'Tata Consultancy Services Ltd', price: 3421.80, change: '-15.20', changePercent: -0.44, recommendation: 'BUY', risk: 'LOW' },
-            { symbol: 'HDFCBANK', name: 'HDFC Bank Ltd', price: 1567.30, change: '+12.80', changePercent: 0.82, recommendation: 'BUY', risk: 'LOW' },
-            { symbol: 'INFY', name: 'Infosys Ltd', price: 1456.90, change: '+8.50', changePercent: 0.59, recommendation: 'HOLD', risk: 'MEDIUM' },
-            { symbol: 'ITC', name: 'ITC Ltd', price: 456.80, change: '+3.20', changePercent: 0.71, recommendation: 'BUY', risk: 'MEDIUM' }
+            { symbol: 'BALRAMCHIN', name: 'Balrampur Chini Mills Ltd', price: 456.50, change: '+23.40', changePercent: 5.41, recommendation: 'BUY', risk: 'HIGH' },
+            { symbol: 'BATAINDIA', name: 'Bata India Ltd', price: 1821.80, change: '+15.20', changePercent: 0.84, recommendation: 'BUY', risk: 'MEDIUM' },
+            { symbol: 'BHEL', name: 'Bharat Heavy Electricals Ltd', price: 267.30, change: '+12.80', changePercent: 5.03, recommendation: 'BUY', risk: 'HIGH' },
+            { symbol: 'COALINDIA', name: 'Coal India Ltd', price: 456.90, change: '+8.50', changePercent: 1.90, recommendation: 'HOLD', risk: 'MEDIUM' },
+            { symbol: 'DIVISLAB', name: 'Divi\'s Laboratories Ltd', price: 3856.80, change: '+3.20', changePercent: 0.08, recommendation: 'BUY', risk: 'MEDIUM' }
           ].map((stock, index) => (
             <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
               <div className="flex items-center space-x-4">
@@ -133,9 +133,9 @@ const NiftyMomentumPortfolioSimple: React.FC = () => {
 
       {/* Available Stocks */}
       <Card className="p-4">
-        <h3 className="text-lg font-semibold mb-4">Available Nifty Momentum Stocks</h3>
+        <h3 className="text-lg font-semibold mb-4">Available Smallcap Momentum Quality Stocks</h3>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-          {['RELIANCE', 'TCS', 'HDFCBANK', 'INFY', 'HINDUNILVR', 'ITC', 'SBIN', 'BHARTIARTL', 'KOTAKBANK', 'LT', 'ASIANPAINT', 'MARUTI'].map((symbol, index) => (
+          {['BALRAMCHIN', 'BATAINDIA', 'BHEL', 'COALINDIA', 'DIVISLAB', 'EICHERMOT', 'GAIL', 'HINDALCO', 'INDUSINDBK', 'JSWSTEEL', 'LUPIN', 'MARUTI', 'NTPC', 'ONGC', 'POWERGRID', 'SUNPHARMA', 'TATAMOTORS', 'TATASTEEL', 'TECHM', 'ULTRACEMCO', 'WIPRO', 'ZEEL'].map((symbol, index) => (
             <div key={index} className="p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
               <div className="flex items-center justify-between">
                 <span className="font-medium">{symbol}</span>
