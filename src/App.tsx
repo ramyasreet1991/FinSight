@@ -10,8 +10,8 @@ import NiftyMomentumPortfolioSimple from './components/NiftyMomentumPortfolioSim
 import NewsFeed from './components/NewsFeed'
 import TijoriAnalysis from './components/TijoriAnalysis'
 import AdvancedAnalytics from './components/AdvancedAnalytics'
-import PortfolioManager from './components/PortfolioManager'
-import IntegrationAnalysis from './components/IntegrationAnalysis'
+import PortfolioManagerSimple from './components/PortfolioManagerSimple'
+import IntegrationAnalysisSimple from './components/IntegrationAnalysisSimple'
 import DisclaimerPageSimple from './pages/DisclaimerPageSimple'
 import { Layout } from './components/Layout'
 import DisclaimerBanner from './components/DisclaimerBanner'
@@ -32,8 +32,8 @@ function App() {
           <Route path="/news" element={<NewsFeed />} />
           <Route path="/tijori" element={<TijoriAnalysis />} />
           <Route path="/analytics" element={<AdvancedAnalytics />} />
-          <Route path="/portfolio-manager" element={<PortfolioManager />} />
-          <Route path="/integration-analysis" element={<IntegrationAnalysis />} />
+          <Route path="/portfolio-manager" element={<PortfolioManagerSimple />} />
+          <Route path="/integration-analysis" element={<IntegrationAnalysisSimple />} />
           <Route path="/disclaimer" element={<DisclaimerPageSimple />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>

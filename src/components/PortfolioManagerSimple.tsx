@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Card } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
@@ -8,29 +8,14 @@ import {
   TrendingUp, 
   TrendingDown, 
   Target,
-  AlertTriangle,
-  CheckCircle,
-  Info,
-  Zap,
-  Activity,
-  BarChart3,
-  LineChart,
-  Filter,
-  Search,
-  Bell,
-  Star,
   DollarSign,
-  Percent,
-  Calendar,
-  Users,
-  Building,
+  BarChart3,
+  Star,
   Plus
 } from 'lucide-react';
 
-const PortfolioManager: React.FC = () => {
+const PortfolioManagerSimple: React.FC = () => {
   const [selectedPortfolio, setSelectedPortfolio] = useState<string>('main');
-  const [timeframe, setTimeframe] = useState<string>('1M');
-  const [viewMode, setViewMode] = useState<string>('overview');
 
   const portfolios = [
     { id: 'main', name: 'Main Portfolio', value: 125000, change: 2.5, stocks: 8 },
@@ -38,57 +23,32 @@ const PortfolioManager: React.FC = () => {
     { id: 'value', name: 'Value Portfolio', value: 95000, change: 1.8, stocks: 6 }
   ];
 
-  // Mock portfolio holdings
-  const portfolioHoldings = {
-    'main': [
-      { symbol: 'BALRAMCHIN', name: 'Balrampur Chini Mills', quantity: 100, avgPrice: 420, currentPrice: 456.50, value: 45650, change: 8.7, weight: 36.5 },
-      { symbol: 'BATAINDIA', name: 'Bata India Ltd', quantity: 50, avgPrice: 1750, currentPrice: 1821.80, value: 91090, change: 4.1, weight: 72.9 },
-      { symbol: 'BHEL', name: 'Bharat Heavy Electricals', quantity: 200, avgPrice: 250, currentPrice: 267.30, value: 53460, change: 6.9, weight: 42.8 },
-      { symbol: 'COALINDIA', name: 'Coal India Ltd', quantity: 150, avgPrice: 420, currentPrice: 456.90, value: 68535, change: 8.8, weight: 54.8 },
-      { symbol: 'DIVISLAB', name: 'Divi\'s Laboratories', quantity: 25, avgPrice: 3600, currentPrice: 3856.80, value: 96420, change: 7.1, weight: 77.1 }
-    ],
-    'momentum': [
-      { symbol: 'BALRAMCHIN', name: 'Balrampur Chini Mills', quantity: 80, avgPrice: 430, currentPrice: 456.50, value: 36520, change: 6.2, weight: 42.9 },
-      { symbol: 'BHEL', name: 'Bharat Heavy Electricals', quantity: 150, avgPrice: 255, currentPrice: 267.30, value: 40095, change: 4.8, weight: 47.2 },
-      { symbol: 'EICHERMOT', name: 'Eicher Motors', quantity: 30, avgPrice: 2400, currentPrice: 2456.50, value: 73695, change: 2.4, weight: 86.7 }
-    ],
-    'value': [
-      { symbol: 'BATAINDIA', name: 'Bata India Ltd', quantity: 40, avgPrice: 1700, currentPrice: 1821.80, value: 72872, change: 7.2, weight: 76.7 },
-      { symbol: 'COALINDIA', name: 'Coal India Ltd', quantity: 120, avgPrice: 440, currentPrice: 456.90, value: 54828, change: 3.8, weight: 57.7 },
-      { symbol: 'GAIL', name: 'GAIL (India) Ltd', quantity: 200, avgPrice: 150, currentPrice: 156.70, value: 31340, change: 4.5, weight: 33.0 }
-    ]
-  };
+  const portfolioHoldings = [
+    { symbol: 'BALRAMCHIN', name: 'Balrampur Chini Mills', quantity: 100, avgPrice: 420, currentPrice: 456.50, value: 45650, change: 8.7, weight: 36.5 },
+    { symbol: 'BATAINDIA', name: 'Bata India Ltd', quantity: 50, avgPrice: 1750, currentPrice: 1821.80, value: 91090, change: 4.1, weight: 72.9 },
+    { symbol: 'BHEL', name: 'Bharat Heavy Electricals', quantity: 200, avgPrice: 250, currentPrice: 267.30, value: 53460, change: 6.9, weight: 42.8 },
+    { symbol: 'COALINDIA', name: 'Coal India Ltd', quantity: 150, avgPrice: 420, currentPrice: 456.90, value: 68535, change: 8.8, weight: 54.8 },
+    { symbol: 'DIVISLAB', name: 'Divi\'s Laboratories', quantity: 25, avgPrice: 3600, currentPrice: 3856.80, value: 96420, change: 7.1, weight: 77.1 }
+  ];
 
-  // Mock performance metrics
   const performanceMetrics = {
     totalValue: 305000,
     totalChange: 3.2,
-    totalChangeValue: 9800,
     dayChange: 1.2,
     weekChange: 2.8,
     monthChange: 3.2,
     yearChange: 15.6,
-    bestPerformer: { symbol: 'BALRAMCHIN', change: 8.7 },
-    worstPerformer: { symbol: 'EICHERMOT', change: 2.4 },
     sharpeRatio: 1.45,
     maxDrawdown: -8.2,
     winRate: 68.5
   };
 
-  // Mock sector allocation
   const sectorAllocation = [
     { sector: 'Sugar', value: 45650, percentage: 15.0, color: 'bg-yellow-500' },
     { sector: 'Footwear', value: 91090, percentage: 29.9, color: 'bg-blue-500' },
     { sector: 'Power Equipment', value: 53460, percentage: 17.5, color: 'bg-green-500' },
     { sector: 'Mining', value: 68535, percentage: 22.5, color: 'bg-red-500' },
     { sector: 'Pharmaceuticals', value: 96420, percentage: 31.6, color: 'bg-purple-500' }
-  ];
-
-  // Mock goals and targets
-  const financialGoals = [
-    { id: 1, name: 'Emergency Fund', target: 500000, current: 125000, progress: 25, deadline: '2024-12-31', priority: 'HIGH' },
-    { id: 2, name: 'House Down Payment', target: 2000000, current: 850000, progress: 42.5, deadline: '2025-06-30', priority: 'MEDIUM' },
-    { id: 3, name: 'Retirement Fund', target: 10000000, current: 1200000, progress: 12, deadline: '2035-12-31', priority: 'LOW' }
   ];
 
   const getChangeColor = (change: number) => {
@@ -129,17 +89,6 @@ const PortfolioManager: React.FC = () => {
             {portfolios.map((portfolio) => (
               <option key={portfolio.id} value={portfolio.id}>{portfolio.name}</option>
             ))}
-          </select>
-          <select
-            value={timeframe}
-            onChange={(e) => setTimeframe(e.target.value)}
-            className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="1D">1 Day</option>
-            <option value="1W">1 Week</option>
-            <option value="1M">1 Month</option>
-            <option value="3M">3 Months</option>
-            <option value="1Y">1 Year</option>
           </select>
         </div>
       </div>
@@ -209,7 +158,6 @@ const PortfolioManager: React.FC = () => {
           <TabsTrigger value="holdings">Holdings</TabsTrigger>
           <TabsTrigger value="performance">Performance</TabsTrigger>
           <TabsTrigger value="allocation">Allocation</TabsTrigger>
-          <TabsTrigger value="goals">Financial Goals</TabsTrigger>
         </TabsList>
 
         {/* Holdings */}
@@ -223,7 +171,7 @@ const PortfolioManager: React.FC = () => {
               </Button>
             </div>
             <div className="space-y-3">
-              {portfolioHoldings[selectedPortfolio as keyof typeof portfolioHoldings]?.map((holding, index) => (
+              {portfolioHoldings.map((holding, index) => (
                 <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
                   <div className="flex items-center space-x-4">
                     <div>
@@ -304,10 +252,6 @@ const PortfolioManager: React.FC = () => {
                   <span className="text-gray-600">Win Rate</span>
                   <span className="font-medium text-green-600">{performanceMetrics.winRate}%</span>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Best Performer</span>
-                  <span className="font-medium text-green-600">{performanceMetrics.bestPerformer.symbol} ({formatPercentage(performanceMetrics.bestPerformer.change)})</span>
-                </div>
               </div>
             </Card>
           </div>
@@ -339,54 +283,9 @@ const PortfolioManager: React.FC = () => {
             </div>
           </Card>
         </TabsContent>
-
-        {/* Financial Goals */}
-        <TabsContent value="goals" className="space-y-4">
-          <Card className="p-4">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold">Financial Goals</h3>
-              <Button size="sm" variant="outline">
-                <Plus className="h-4 w-4 mr-2" />
-                Add Goal
-              </Button>
-            </div>
-            <div className="space-y-4">
-              {financialGoals.map((goal) => (
-                <div key={goal.id} className="p-4 border rounded-lg">
-                  <div className="flex items-center justify-between mb-2">
-                    <h4 className="font-semibold">{goal.name}</h4>
-                    <Badge className={
-                      goal.priority === 'HIGH' ? 'bg-red-100 text-red-800' :
-                      goal.priority === 'MEDIUM' ? 'bg-yellow-100 text-yellow-800' :
-                      'bg-green-100 text-green-800'
-                    }>
-                      {goal.priority}
-                    </Badge>
-                  </div>
-                  <div className="mb-3">
-                    <div className="flex justify-between text-sm text-gray-600 mb-1">
-                      <span>{formatCurrency(goal.current)} of {formatCurrency(goal.target)}</span>
-                      <span>{goal.progress}%</span>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div 
-                        className="bg-blue-600 h-2 rounded-full"
-                        style={{ width: `${goal.progress}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                  <div className="flex justify-between text-sm text-gray-600">
-                    <span>Deadline: {new Date(goal.deadline).toLocaleDateString()}</span>
-                    <span>Remaining: {formatCurrency(goal.target - goal.current)}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Card>
-        </TabsContent>
       </Tabs>
     </div>
   );
 };
 
-export default PortfolioManager;
+export default PortfolioManagerSimple;
