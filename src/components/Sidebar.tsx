@@ -1,15 +1,18 @@
 import { Link, useLocation } from 'react-router-dom'
-import { 
-  Home, 
-  PieChart, 
-  BarChart3, 
-  Settings, 
+import {
+  Home,
+  PieChart,
+  BarChart3,
+  Settings,
   TrendingUp,
   DollarSign,
   Target,
   Wallet,
   Activity,
-  Play
+  Play,
+  Rss,
+  Zap,
+  AlertTriangle
 } from 'lucide-react'
 
 const navigation = [
@@ -18,6 +21,9 @@ const navigation = [
   { name: 'Analytics', href: '/analytics', icon: BarChart3 },
   { name: 'Trading', href: '/trading', icon: Activity },
   { name: 'Backtest', href: '/backtest', icon: Play },
+  { name: 'Feed Integration', href: '/feeds', icon: Rss },
+  { name: 'Nifty Momentum', href: '/nifty-momentum', icon: Zap },
+  { name: 'Disclaimer', href: '/disclaimer', icon: AlertTriangle },
   { name: 'Settings', href: '/settings', icon: Settings },
 ]
 
