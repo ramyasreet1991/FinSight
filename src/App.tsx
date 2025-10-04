@@ -11,7 +11,7 @@ import NewsFeed from './components/NewsFeed'
 import TijoriAnalysis from './components/TijoriAnalysis'
 import AdvancedAnalytics from './components/AdvancedAnalytics'
 import PortfolioManagerSimple from './components/PortfolioManagerSimple'
-import IntegrationAnalysisSimple from './components/IntegrationAnalysisSimple'
+import IntegrationAnalysisFixed from './components/IntegrationAnalysisFixed'
 import EMICalculator from './components/EMICalculator'
 import IncomeIdeas from './components/IncomeIdeas'
 import DisclaimerPageSimple from './pages/DisclaimerPageSimple'
@@ -35,7 +35,7 @@ function App() {
           <Route path="/tijori" element={<TijoriAnalysis />} />
           <Route path="/analytics" element={<AdvancedAnalytics />} />
           <Route path="/portfolio-manager" element={<PortfolioManagerSimple />} />
-          <Route path="/integration-analysis" element={<IntegrationAnalysisSimple />} />
+          <Route path="/integration-analysis" element={<IntegrationAnalysisFixed />} />
           <Route path="/emi-calculator" element={<EMICalculator />} />
           <Route path="/income-ideas" element={<IncomeIdeas />} />
           <Route path="/disclaimer" element={<DisclaimerPageSimple />} />
