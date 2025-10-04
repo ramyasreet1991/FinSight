@@ -7,6 +7,8 @@ import { TradingDashboard } from './components/TradingDashboard'
 import { BacktestEngine } from './components/BacktestEngine'
 import FeedIntegrationSimple from './components/FeedIntegrationSimple'
 import NiftyMomentumPortfolioSimple from './components/NiftyMomentumPortfolioSimple'
+import NewsFeed from './components/NewsFeed'
+import TijoriAnalysis from './components/TijoriAnalysis'
 import DisclaimerPageSimple from './pages/DisclaimerPageSimple'
 import { Layout } from './components/Layout'
 import DisclaimerBanner from './components/DisclaimerBanner'
@@ -24,6 +26,8 @@ function App() {
           <Route path="/backtest" element={<BacktestEngine />} />
           <Route path="/feeds" element={<FeedIntegrationSimple />} />
           <Route path="/nifty-momentum" element={<NiftyMomentumPortfolioSimple />} />
+          <Route path="/news" element={<NewsFeed />} />
+          <Route path="/tijori" element={<TijoriAnalysis />} />
           <Route path="/disclaimer" element={<DisclaimerPageSimple />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>

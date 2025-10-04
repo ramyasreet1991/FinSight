@@ -12,7 +12,9 @@ import {
   Play,
   Rss,
   Zap,
-  AlertTriangle
+  AlertTriangle,
+  Newspaper,
+  Building
 } from 'lucide-react'
 
 const navigation = [
@@ -23,6 +25,8 @@ const navigation = [
   { name: 'Backtest', href: '/backtest', icon: Play },
   { name: 'Feed Integration', href: '/feeds', icon: Rss },
   { name: 'Smallcap Momentum', href: '/nifty-momentum', icon: Zap },
+  { name: 'News Feed', href: '/news', icon: Newspaper },
+  { name: 'Tijori Analysis', href: '/tijori', icon: Building },
   { name: 'Disclaimer', href: '/disclaimer', icon: AlertTriangle },
   { name: 'Settings', href: '/settings', icon: Settings },
 ]
