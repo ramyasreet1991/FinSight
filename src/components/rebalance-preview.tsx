@@ -1,8 +1,8 @@
-import { Card } from "./ui/card"
-import { Button } from "./ui/button"
-import { Badge } from "./ui/badge"
+import { Card } from "../ui/card"
+import { Button } from "../ui/button"
+import { Badge } from "../ui/badge"
 import { ExternalLink, AlertTriangle, CheckCircle2, Calendar, ArrowRight } from "lucide-react"
-import { ScrollArea } from "./ui/scroll-area"
+import { ScrollArea } from "../ui/scroll-area"
 
 const candidates = [
   {

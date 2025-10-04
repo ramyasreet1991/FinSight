@@ -1,7 +1,7 @@
-import { Card } from "./ui/card"
-import { Badge } from "./ui/badge"
-import { Button } from "./ui/button"
-import { ScrollArea } from "./ui/scroll-area"
+import { Card } from "../ui/card"
+import { Badge } from "../ui/badge"
+import { Button } from "../ui/button"
+import { ScrollArea } from "../ui/scroll-area"
 import { Sparkles, ExternalLink, TrendingUp, Clock, Filter } from "lucide-react"
 
 const researchSignals = [

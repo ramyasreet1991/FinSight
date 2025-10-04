@@ -1,6 +1,6 @@
-import { Card } from "./ui/card"
+import { Card } from "../ui/card"
 import { TrendingUp, TrendingDown, DollarSign, Target, AlertCircle } from "lucide-react"
-import { Badge } from "./ui/badge"
+import { Badge } from "../ui/badge"
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
 
 const portfolioData = [
