@@ -39,7 +39,7 @@ const researchSignals = [
   },
 ]
 
-export function ResearchFeed() {
+function ResearchFeed() {
   return (
     <Card className="flex flex-col">
       <div className="p-4 border-b border-border">
@@ -103,3 +103,5 @@ export function ResearchFeed() {
     </Card>
   )
 }
+
+export { ResearchFeed }

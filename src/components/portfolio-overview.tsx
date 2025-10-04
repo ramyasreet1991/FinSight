@@ -43,7 +43,7 @@ const stats = [
   },
 ]
 
-export function PortfolioOverview() {
+function PortfolioOverview() {
   return (
     <div className="space-y-4">
       {/* Stats Grid */}
@@ -125,3 +125,5 @@ export function PortfolioOverview() {
     </div>
   )
 }
+
+export { PortfolioOverview }

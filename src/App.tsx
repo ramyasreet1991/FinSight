@@ -3,6 +3,8 @@ import { Dashboard } from './pages/Dashboard'
 import { Portfolio } from './pages/Portfolio'
 import { Analytics } from './pages/Analytics'
 import { Settings } from './pages/Settings'
+import { TradingDashboard } from './components/TradingDashboard'
+import { BacktestEngine } from './components/BacktestEngine'
 import { Layout } from './components/Layout'
 
 function App() {
@@ -13,6 +15,8 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/analytics" element={<Analytics />} />
+          <Route path="/trading" element={<TradingDashboard />} />
+          <Route path="/backtest" element={<BacktestEngine />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
       </Layout>

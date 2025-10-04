@@ -7,13 +7,17 @@ import {
   TrendingUp,
   DollarSign,
   Target,
-  Wallet
+  Wallet,
+  Activity,
+  Play
 } from 'lucide-react'
 
 const navigation = [
   { name: 'Dashboard', href: '/', icon: Home },
   { name: 'Portfolio', href: '/portfolio', icon: PieChart },
   { name: 'Analytics', href: '/analytics', icon: BarChart3 },
+  { name: 'Trading', href: '/trading', icon: Activity },
+  { name: 'Backtest', href: '/backtest', icon: Play },
   { name: 'Settings', href: '/settings', icon: Settings },
 ]
 

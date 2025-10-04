@@ -57,3 +57,29 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .text-success {
+    @apply text-green-600;
+  }
+  
+  .text-warning {
+    @apply text-yellow-600;
+  }
+  
+  .text-danger {
+    @apply text-red-600;
+  }
+  
+  .bg-success {
+    @apply bg-green-100;
+  }
+  
+  .bg-warning {
+    @apply bg-yellow-100;
+  }
+  
+  .bg-danger {
+    @apply bg-red-100;
+  }
+}

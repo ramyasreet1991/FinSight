@@ -39,7 +39,7 @@ const holdings = [
   },
 ]
 
-export function HoldingsView() {
+function HoldingsView() {
   return (
     <Card>
       <div className="p-4 border-b border-border">
@@ -129,3 +129,5 @@ export function HoldingsView() {
     </Card>
   )
 }
+
+export { HoldingsView }
