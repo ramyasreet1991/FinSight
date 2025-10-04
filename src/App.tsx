@@ -5,9 +5,9 @@ import { Analytics } from './pages/Analytics'
 import { Settings } from './pages/Settings'
 import { TradingDashboard } from './components/TradingDashboard'
 import { BacktestEngine } from './components/BacktestEngine'
-import { FeedIntegration } from './components/FeedIntegration'
-import { NiftyMomentumPortfolio } from './components/NiftyMomentumPortfolio'
-import DisclaimerPage from './pages/DisclaimerPage'
+import FeedIntegrationSimple from './components/FeedIntegrationSimple'
+import NiftyMomentumPortfolioSimple from './components/NiftyMomentumPortfolioSimple'
+import DisclaimerPageSimple from './pages/DisclaimerPageSimple'
 import { Layout } from './components/Layout'
 import DisclaimerBanner from './components/DisclaimerBanner'
 
@@ -22,9 +22,9 @@ function App() {
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/trading" element={<TradingDashboard />} />
           <Route path="/backtest" element={<BacktestEngine />} />
-          <Route path="/feeds" element={<FeedIntegration />} />
-          <Route path="/nifty-momentum" element={<NiftyMomentumPortfolio />} />
-          <Route path="/disclaimer" element={<DisclaimerPage />} />
+          <Route path="/feeds" element={<FeedIntegrationSimple />} />
+          <Route path="/nifty-momentum" element={<NiftyMomentumPortfolioSimple />} />
+          <Route path="/disclaimer" element={<DisclaimerPageSimple />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
       </Layout>
