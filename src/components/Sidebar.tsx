@@ -17,7 +17,10 @@ import {
   Building,
   LineChart,
   Users,
-  FileText
+  FileText,
+  Calculator,
+  Lightbulb,
+  ShoppingCart
 } from 'lucide-react'
 
 const navigation = [
@@ -33,6 +36,9 @@ const navigation = [
   { name: 'Advanced Analytics', href: '/analytics', icon: LineChart },
   { name: 'Portfolio Manager', href: '/portfolio-manager', icon: Users },
   { name: 'Integration Analysis', href: '/integration-analysis', icon: FileText },
+  { name: 'EMI Calculator', href: '/emi-calculator', icon: Calculator },
+  { name: 'Income Ideas', href: '/income-ideas', icon: Lightbulb },
+  { name: 'Grocery Comparison', href: '/grocery-comparison', icon: ShoppingCart },
   { name: 'Disclaimer', href: '/disclaimer', icon: AlertTriangle },
   { name: 'Settings', href: '/settings', icon: Settings },
 ]
