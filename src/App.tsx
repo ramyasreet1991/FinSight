@@ -14,7 +14,6 @@ import PortfolioManagerSimple from './components/PortfolioManagerSimple'
 import IntegrationAnalysisSimple from './components/IntegrationAnalysisSimple'
 import EMICalculator from './components/EMICalculator'
 import IncomeIdeas from './components/IncomeIdeas'
-import GroceryComparison from './components/GroceryComparison'
 import DisclaimerPageSimple from './pages/DisclaimerPageSimple'
 import { Layout } from './components/Layout'
 import DisclaimerBanner from './components/DisclaimerBanner'
@@ -39,7 +38,6 @@ function App() {
           <Route path="/integration-analysis" element={<IntegrationAnalysisSimple />} />
           <Route path="/emi-calculator" element={<EMICalculator />} />
           <Route path="/income-ideas" element={<IncomeIdeas />} />
-          <Route path="/grocery-comparison" element={<GroceryComparison />} />
           <Route path="/disclaimer" element={<DisclaimerPageSimple />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
