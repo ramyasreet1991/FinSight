@@ -1,0 +1,58 @@
+{
+  "name": "finsight",
+  "version": "1.0.0",
+  "description": "Financial Insights Dashboard - A comprehensive financial analytics and investment tracking platform",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ramyasreet1991/FinSight.git"
+  },
+  "keywords": [
+    "finance",
+    "dashboard",
+    "analytics",
+    "investment",
+    "trading",
+    "portfolio",
+    "react",
+    "typescript"
+  ],
+  "author": "ramyasreet1991",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ramyasreet1991/FinSight/issues"
+  },
+  "homepage": "https://github.com/ramyasreet1991/FinSight#readme",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.1",
+    "lucide-react": "^0.263.1",
+    "recharts": "^2.8.0",
+    "date-fns": "^2.29.3",
+    "clsx": "^1.2.1",
+    "tailwind-merge": "^1.14.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
+    "@vitejs/plugin-react": "^4.0.0",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^8.38.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.3.4",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5.0.2",
+    "vite": "^4.3.2"
+  }
+}
