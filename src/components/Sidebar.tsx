@@ -75,15 +75,6 @@ export function Sidebar() {
         })}
       </nav>
 
-      <div className="absolute bottom-0 w-64 p-6">
-        <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-4 text-white">
-          <div className="flex items-center space-x-2 mb-2">
-            <Target className="w-4 h-4" />
-            <span className="text-sm font-medium">Financial Goals</span>
-          </div>
-          <p className="text-xs opacity-90">Track your progress towards financial freedom</p>
-        </div>
-      </div>
     </div>
   )
 }
