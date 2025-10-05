@@ -22,7 +22,8 @@ import {
   Lightbulb,
   Radio,
   Star,
-  MessageSquare
+  MessageSquare,
+  Database
 } from 'lucide-react'
 
 const navigation = [
@@ -42,6 +43,7 @@ const navigation = [
   { name: 'Multibagger Analysis', href: '/multibagger-analysis', icon: Star },
   { name: 'Live Multibagger', href: '/live-multibagger', icon: Zap },
   { name: 'Financial AI', href: '/financial-ai', icon: MessageSquare },
+  { name: 'NSE Data Analysis', href: '/nse-analysis', icon: Database },
   { name: 'EMI Calculator', href: '/emi-calculator', icon: Calculator },
   { name: 'Income Ideas', href: '/income-ideas', icon: Lightbulb },
   { name: 'Disclaimer', href: '/disclaimer', icon: AlertTriangle },
