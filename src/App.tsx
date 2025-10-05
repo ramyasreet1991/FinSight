@@ -21,13 +21,11 @@ import FinancialBestPracticesAI from './components/FinancialBestPracticesAI'
 import NSEDataAnalysis from './components/NSEDataAnalysis'
 import DisclaimerPageSimple from './pages/DisclaimerPageSimple'
 import { Layout } from './components/Layout'
-import DisclaimerBanner from './components/DisclaimerBanner'
 
 function App() {
   return (
     <Router>
       <Layout>
-        <DisclaimerBanner />
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/portfolio" element={<Portfolio />} />

@@ -1,6 +1,6 @@
 import React from 'react';
 import { TrendingUp, TrendingDown, Activity, BarChart3 } from 'lucide-react';
-import { designTokens, formatCurrency, formatPercentage } from './DesignTokens';
+import { designTokens, formatCurrency, formatPercentage, formatNumber } from './DesignTokens';
 
 interface MarketData {
   name: string;
