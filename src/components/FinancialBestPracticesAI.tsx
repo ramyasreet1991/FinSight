@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { Textarea } from '../ui/textarea';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
+import { EnhancedAIChat } from './EnhancedAIChat';
 import { 
   Brain,
   Calculator,
@@ -71,13 +72,6 @@ interface FinancialProfile {
   emergency_fund_months: number;
 }
 
-interface ChatMessage {
-  id: string;
-  type: 'user' | 'ai';
-  content: string;
-  timestamp: Date;
-  isTyping?: boolean;
-}
 
 // Template prompt generation functions
 const generateEmergencyFundPrompt = (profile: FinancialProfile) => {
@@ -250,9 +244,6 @@ Please provide:
 
 const FinancialBestPracticesAI: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState<string>('chat');
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [inputMessage, setInputMessage] = useState<string>('');
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [financialProfile, setFinancialProfile] = useState<FinancialProfile>({
     dependents: 0,
     goals: [],
@@ -285,32 +276,6 @@ const FinancialBestPracticesAI: React.FC = () => {
   const [showProfileForm, setShowProfileForm] = useState<boolean>(false);
   const [currentStep, setCurrentStep] = useState<number>(1);
 
-  useEffect(() => {
-    // Initialize with welcome message
-    const welcomeMessage: ChatMessage = {
-      id: '1',
-      type: 'ai',
-      content: `Hi! I can share **finance best-practices** (not advice). 
-
-**⚠️ IMPORTANT DISCLAIMER:**
-• This is **best-practices education**, **not** financial planning or personalized advice
-• I am **not a CA** and **not SEBI-registered**; tax and investment rules can change
-• Always consult qualified professionals before making financial decisions
-
-Let's start with some quick details to tailor the guidance:
-
-1. **Age, city, dependents**; top 2-3 goals + timelines
-2. **Monthly take-home** & core expenses  
-3. **Assets** (bank/FD, EPF/NPS, MF/stocks, gold, real estate)
-4. **Loans** (type, outstanding, interest %, EMI, tenure left)
-5. **Emergency fund** (months), term life sum assured, health cover (₹)
-6. **Tax regime** (old/new) & risk comfort (low/med/high)
-
-Would you prefer a **quick start** or a **deeper** best-practices walkthrough?`,
-      timestamp: new Date()
-    };
-    setMessages([welcomeMessage]);
-  }, []);
 
   const addMessage = (content: string, type: 'user' | 'ai', isTyping: boolean = false) => {
     const newMessage: ChatMessage = {
@@ -465,98 +430,13 @@ Would you prefer a **quick start** or a **deeper** best-practices walkthrough?`,
           {/* AI Chat */}
           <TabsContent value="chat" className="space-y-4">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {/* Chat Interface */}
+              {/* Enhanced Chat Interface */}
               <div className="lg:col-span-2">
-                <Card className="h-[600px] flex flex-col">
-                  <div className="p-4 border-b">
-                    <h3 className="font-semibold">Financial Best-Practices AI Assistant</h3>
-                    <p className="text-sm text-gray-600">Ask questions about personal finance best practices</p>
-                  </div>
-                  
-                  <div className="flex-1 overflow-y-auto p-4 space-y-4">
-                    {messages.map((message) => (
-                      <div
-                        key={message.id}
-                        className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
-                      >
-                        <div
-                          className={`max-w-[80%] rounded-lg p-3 ${
-                            message.type === 'user'
-                              ? 'bg-blue-600 text-white'
-                              : 'bg-gray-100 text-gray-900'
-                          }`}
-                        >
-                          <div className="prose prose-sm max-w-none">
-                            {message.content.split('\n').map((line, index) => {
-                              // Handle empty lines
-                              if (line.trim() === '') {
-                                return <br key={index} />;
-                              }
-                              
-                              // Handle markdown-style bold text
-                              const formattedLine = line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-                              
-                              // Handle bullet points
-                              if (line.trim().startsWith('•') || line.trim().startsWith('-')) {
-                                return (
-                                  <div key={index} className="flex items-start mb-1">
-                                    <span className="mr-2">•</span>
-                                    <span 
-                                      dangerouslySetInnerHTML={{ __html: formattedLine.replace(/^[•\-]\s*/, '') }}
-                                      className="flex-1"
-                                    />
-                                  </div>
-                                );
-                              }
-                              
-                              // Handle regular paragraphs
-                              return (
-                                <p key={index} className="mb-2 last:mb-0">
-                                  <span dangerouslySetInnerHTML={{ __html: formattedLine }} />
-                                </p>
-                              );
-                            })}
-                          </div>
-                          <div className={`text-xs mt-2 ${
-                            message.type === 'user' ? 'text-blue-100' : 'text-gray-500'
-                          }`}>
-                            {message.timestamp.toLocaleTimeString()}
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                    
-                    {isLoading && (
-                      <div className="flex justify-start">
-                        <div className="bg-gray-100 rounded-lg p-3">
-                          <div className="flex items-center space-x-2">
-                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
-                            <span className="text-sm text-gray-600">AI is thinking...</span>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  
-                  <div className="p-4 border-t">
-                    <div className="flex space-x-2">
-                      <Textarea
-                        value={inputMessage}
-                        onChange={(e) => setInputMessage(e.target.value)}
-                        onKeyPress={handleKeyPress}
-                        placeholder="Ask about financial best practices..."
-                        className="flex-1 min-h-[60px]"
-                        disabled={isLoading}
-                      />
-                      <Button 
-                        onClick={handleSendMessage}
-                        disabled={!inputMessage.trim() || isLoading}
-                        size="lg"
-                      >
-                        <Send className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
+                <Card className="h-[700px] flex flex-col">
+                  <EnhancedAIChat 
+                    financialProfile={financialProfile}
+                    className="h-full"
+                  />
                 </Card>
               </div>
 
