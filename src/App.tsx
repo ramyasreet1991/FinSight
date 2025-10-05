@@ -17,6 +17,7 @@ import IncomeIdeasFixed from './components/IncomeIdeasFixed'
 import TradingNewsRadar from './components/TradingNewsRadar'
 import MultibaggerAnalysis from './components/MultibaggerAnalysis'
 import LiveMultibaggerAnalysis from './components/LiveMultibaggerAnalysis'
+import FinancialBestPracticesAI from './components/FinancialBestPracticesAI'
 import DisclaimerPageSimple from './pages/DisclaimerPageSimple'
 import { Layout } from './components/Layout'
 import DisclaimerBanner from './components/DisclaimerBanner'
@@ -44,6 +45,7 @@ function App() {
           <Route path="/trading-news-radar" element={<TradingNewsRadar />} />
           <Route path="/multibagger-analysis" element={<MultibaggerAnalysis />} />
           <Route path="/live-multibagger" element={<LiveMultibaggerAnalysis />} />
+          <Route path="/financial-ai" element={<FinancialBestPracticesAI />} />
           <Route path="/disclaimer" element={<DisclaimerPageSimple />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
