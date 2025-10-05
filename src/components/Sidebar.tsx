@@ -22,7 +22,6 @@ import {
   Lightbulb,
   Radio,
   Star,
-  Zap,
   MessageSquare
 } from 'lucide-react'
 
