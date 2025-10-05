@@ -15,7 +15,7 @@ import IntegrationAnalysisFixed from './components/IntegrationAnalysisFixed'
 import EMICalculator from './components/EMICalculator'
 import IncomeIdeasFixed from './components/IncomeIdeasFixed'
 import TradingNewsRadar from './components/TradingNewsRadar'
-import EnhancedMultibaggerAnalysis from './components/EnhancedMultibaggerAnalysis'
+import MultibaggerAnalysisFixed from './components/MultibaggerAnalysisFixed'
 import LiveMultibaggerAnalysis from './components/LiveMultibaggerAnalysis'
 import FinancialBestPracticesAI from './components/FinancialBestPracticesAI'
 import EnhancedNSEDataAnalysis from './components/EnhancedNSEDataAnalysis'
@@ -42,7 +42,7 @@ function App() {
           <Route path="/emi-calculator" element={<EMICalculator />} />
           <Route path="/income-ideas" element={<IncomeIdeasFixed />} />
           <Route path="/trading-news-radar" element={<TradingNewsRadar />} />
-          <Route path="/multibagger-analysis" element={<EnhancedMultibaggerAnalysis />} />
+          <Route path="/multibagger-analysis" element={<MultibaggerAnalysisFixed />} />
                  <Route path="/live-multibagger" element={<LiveMultibaggerAnalysis />} />
                  <Route path="/financial-ai" element={<FinancialBestPracticesAI />} />
                  <Route path="/nse-analysis" element={<EnhancedNSEDataAnalysis />} />
