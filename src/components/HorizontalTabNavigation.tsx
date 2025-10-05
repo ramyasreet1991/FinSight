@@ -131,10 +131,10 @@ const HorizontalTabNavigation: React.FC = () => {
         { id: 'financial-ai', label: 'Financial AI Assistant', icon: MessageSquare, href: '/financial-ai', description: 'AI-powered financial guidance' },
         { id: 'income-ideas', label: 'Income Ideas', icon: Lightbulb, href: '/income-ideas', description: 'Business & investment opportunities' },
         { id: 'tax-calculator', label: 'Tax Calculator', icon: CreditCard, href: '/emi-calculator', description: 'Income tax calculations' },
-        { id: 'investment-calculator', label: 'Investment Calculator', icon: Target, href: '/portfolio', description: 'Investment planning tools' },
-        { id: 'retirement-calculator', label: 'Retirement Calculator', icon: PiggyBank, href: '/financial-ai', description: 'Retirement planning' },
-        { id: 'sip-calculator', label: 'SIP Calculator', icon: TrendingUp, href: '/portfolio', description: 'Systematic investment planning' },
-        { id: 'goal-calculator', label: 'Goal Calculator', icon: Award, href: '/financial-ai', description: 'Financial goal planning' }
+        { id: 'investment-calculator', label: 'Investment Calculator', icon: Target, href: '/portfolio?tab=investment', description: 'Investment planning tools' },
+        { id: 'retirement-calculator', label: 'Retirement Calculator', icon: PiggyBank, href: '/financial-ai?tab=retirement', description: 'Retirement planning' },
+        { id: 'sip-calculator', label: 'SIP Calculator', icon: TrendingUp, href: '/portfolio?tab=sip', description: 'Systematic investment planning' },
+        { id: 'goal-calculator', label: 'Goal Calculator', icon: Award, href: '/financial-ai?tab=goals', description: 'Financial goal planning' }
       ]
     },
     {
@@ -144,13 +144,13 @@ const HorizontalTabNavigation: React.FC = () => {
       badge: 'Live',
       children: [
         { id: 'news-feed', label: 'News Feed', icon: Newspaper, href: '/news', description: 'Latest financial news' },
-        { id: 'market-updates', label: 'Market Updates', icon: TrendingUp, href: '/news', description: 'Market-moving headlines' },
-        { id: 'company-announcements', label: 'Company Announcements', icon: Building, href: '/news', description: 'Corporate news' },
-        { id: 'economic-indicators', label: 'Economic Indicators', icon: DollarSign, href: '/news', description: 'Economic data & reports' },
-        { id: 'sector-news', label: 'Sector News', icon: PieChart, href: '/news', description: 'Industry-specific updates' },
-        { id: 'global-markets', label: 'Global Markets', icon: Globe, href: '/news', description: 'International market news' },
-        { id: 'earnings-calendar', label: 'Earnings Calendar', icon: Calendar, href: '/news', description: 'Upcoming earnings reports' },
-        { id: 'ipo-listings', label: 'IPO & Listings', icon: TrendingUp, href: '/news', description: 'New stock listings' }
+        { id: 'market-updates', label: 'Market Updates', icon: TrendingUp, href: '/news?tab=market', description: 'Market-moving headlines' },
+        { id: 'company-announcements', label: 'Company Announcements', icon: Building, href: '/news?tab=company', description: 'Corporate news' },
+        { id: 'economic-indicators', label: 'Economic Indicators', icon: DollarSign, href: '/news?tab=economic', description: 'Economic data & reports' },
+        { id: 'sector-news', label: 'Sector News', icon: PieChart, href: '/news?tab=sector', description: 'Industry-specific updates' },
+        { id: 'global-markets', label: 'Global Markets', icon: Globe, href: '/news?tab=global', description: 'International market news' },
+        { id: 'earnings-calendar', label: 'Earnings Calendar', icon: Calendar, href: '/news?tab=earnings', description: 'Upcoming earnings reports' },
+        { id: 'ipo-listings', label: 'IPO & Listings', icon: TrendingUp, href: '/news?tab=ipo', description: 'New stock listings' }
       ]
     },
     {
@@ -161,11 +161,11 @@ const HorizontalTabNavigation: React.FC = () => {
       children: [
         { id: 'my-portfolio', label: 'My Portfolio', icon: PieChart, href: '/portfolio', description: 'View your investments' },
         { id: 'performance-metrics', label: 'Performance Metrics', icon: BarChart3, href: '/analytics', description: 'Portfolio performance analysis' },
-        { id: 'transaction-history', label: 'Transaction History', icon: Activity, href: '/portfolio', description: 'Buy/sell history' },
-        { id: 'dividend-tracking', label: 'Dividend Tracking', icon: DollarSign, href: '/portfolio', description: 'Dividend income tracking' },
-        { id: 'tax-reports', label: 'Tax Reports', icon: FileText, href: '/portfolio', description: 'Capital gains & tax reports' },
-        { id: 'financial-goals', label: 'Financial Goals', icon: Target, href: '/financial-ai', description: 'Goal-based investing' },
-        { id: 'portfolio-rebalancing', label: 'Portfolio Rebalancing', icon: RefreshCw, href: '/portfolio', description: 'Rebalancing tools' },
+        { id: 'transaction-history', label: 'Transaction History', icon: Activity, href: '/portfolio?tab=transactions', description: 'Buy/sell history' },
+        { id: 'dividend-tracking', label: 'Dividend Tracking', icon: DollarSign, href: '/portfolio?tab=dividends', description: 'Dividend income tracking' },
+        { id: 'tax-reports', label: 'Tax Reports', icon: FileText, href: '/portfolio?tab=tax-reports', description: 'Capital gains & tax reports' },
+        { id: 'financial-goals', label: 'Financial Goals', icon: Target, href: '/financial-ai?tab=goals', description: 'Goal-based investing' },
+        { id: 'portfolio-rebalancing', label: 'Portfolio Rebalancing', icon: RefreshCw, href: '/portfolio?tab=rebalancing', description: 'Rebalancing tools' },
         { id: 'risk-assessment', label: 'Risk Assessment', icon: AlertTriangle, href: '/advanced-analytics', description: 'Portfolio risk analysis' }
       ]
     },
@@ -175,13 +175,13 @@ const HorizontalTabNavigation: React.FC = () => {
       icon: Bookmark,
       children: [
         { id: 'disclaimer', label: 'Disclaimer & Terms', icon: AlertTriangle, href: '/disclaimer', description: 'Legal information & disclaimers' },
-        { id: 'trading-tutorials', label: 'Trading Tutorials', icon: Play, href: '/disclaimer', description: 'Learn trading basics' },
-        { id: 'educational-webinars', label: 'Educational Webinars', icon: Users, href: '/disclaimer', description: 'Live educational sessions' },
-        { id: 'financial-glossary', label: 'Financial Glossary', icon: FileText, href: '/disclaimer', description: 'Financial terms dictionary' },
-        { id: 'research-reports', label: 'Research Reports', icon: FileText, href: '/disclaimer', description: 'In-depth market research' },
-        { id: 'online-courses', label: 'Online Courses', icon: Award, href: '/disclaimer', description: 'Structured learning paths' },
-        { id: 'faq', label: 'FAQ', icon: MessageSquare, href: '/disclaimer', description: 'Frequently asked questions' },
-        { id: 'help-support', label: 'Help & Support', icon: ExternalLink, href: '/disclaimer', description: 'Customer support' }
+        { id: 'trading-tutorials', label: 'Trading Tutorials', icon: Play, href: '/disclaimer?tab=tutorials', description: 'Learn trading basics' },
+        { id: 'educational-webinars', label: 'Educational Webinars', icon: Users, href: '/disclaimer?tab=webinars', description: 'Live educational sessions' },
+        { id: 'financial-glossary', label: 'Financial Glossary', icon: FileText, href: '/disclaimer?tab=glossary', description: 'Financial terms dictionary' },
+        { id: 'research-reports', label: 'Research Reports', icon: FileText, href: '/disclaimer?tab=research', description: 'In-depth market research' },
+        { id: 'online-courses', label: 'Online Courses', icon: Award, href: '/disclaimer?tab=courses', description: 'Structured learning paths' },
+        { id: 'faq', label: 'FAQ', icon: MessageSquare, href: '/disclaimer?tab=faq', description: 'Frequently asked questions' },
+        { id: 'help-support', label: 'Help & Support', icon: ExternalLink, href: '/disclaimer?tab=support', description: 'Customer support' }
       ]
     }
   ];
@@ -274,7 +274,10 @@ const HorizontalTabNavigation: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 py-6">
             {activeTabGroup.children.map((item) => {
-              const isActive = item.href === location.pathname;
+              // Extract base path without query parameters for comparison
+              const itemBasePath = item.href.split('?')[0];
+              const currentBasePath = location.pathname;
+              const isActive = itemBasePath === currentBasePath;
               const isExpanded = expandedItems.has(item.id);
               
               return (
