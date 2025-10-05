@@ -79,6 +79,175 @@ interface ChatMessage {
   isTyping?: boolean;
 }
 
+// Template prompt generation functions
+const generateEmergencyFundPrompt = (profile: FinancialProfile) => {
+  const monthlyExpenses = profile.monthly_expenses || 0;
+  const currentEmergencyFund = (profile.assets.bank_fd || 0) + (profile.assets.debt_funds_bonds || 0);
+  const targetEmergencyFund = monthlyExpenses * 6;
+  const gap = Math.max(0, targetEmergencyFund - currentEmergencyFund);
+  
+  return `Emergency Fund Analysis Request:
+
+Current Situation:
+• Monthly Expenses: ₹${monthlyExpenses.toLocaleString()}
+• Current Emergency Fund: ₹${currentEmergencyFund.toLocaleString()}
+• Target (6 months): ₹${targetEmergencyFund.toLocaleString()}
+• Gap: ₹${gap.toLocaleString()}
+
+Please provide:
+1. Emergency fund target calculation based on my expenses
+2. Current gap analysis and timeline to build it
+3. Best investment options for emergency fund (FD, liquid funds, etc.)
+4. Monthly SIP amount needed to reach target
+5. Tips to build emergency fund faster
+
+Age: ${profile.age || 'Not specified'}, City: ${profile.city || 'Not specified'}`;
+};
+
+const generateDebtStrategyPrompt = (profile: FinancialProfile) => {
+  const totalLiabilities = profile.liabilities.reduce((sum, liab) => sum + liab.outstanding, 0);
+  const monthlyEMI = profile.emis_total || 0;
+  const monthlyIncome = profile.monthly_income || 0;
+  const dtiRatio = monthlyIncome > 0 ? (monthlyEMI / monthlyIncome) * 100 : 0;
+  
+  return `Debt Repayment Strategy Analysis:
+
+Current Debt Situation:
+• Total Outstanding Debt: ₹${totalLiabilities.toLocaleString()}
+• Monthly EMI: ₹${monthlyEMI.toLocaleString()}
+• Monthly Income: ₹${monthlyIncome.toLocaleString()}
+• DTI Ratio: ${dtiRatio.toFixed(1)}%
+
+Debt Breakdown:
+${profile.liabilities.map(liab => 
+  `• ${liab.type.toUpperCase()}: ₹${liab.outstanding.toLocaleString()} @ ${liab.roi_pct}% (EMI: ₹${liab.emi.toLocaleString()})`
+).join('\n')}
+
+Please provide:
+1. Debt prioritization strategy (avalanche vs snowball)
+2. Which debt to pay off first and why
+3. Prepayment vs investment analysis
+4. Timeline to become debt-free
+5. Ways to reduce interest burden`;
+};
+
+const generateAssetAllocationPrompt = (profile: FinancialProfile) => {
+  const totalAssets = Object.values(profile.assets).reduce((sum, val) => sum + val, 0);
+  const equityAssets = profile.assets.equity_mf_stocks || 0;
+  const debtAssets = (profile.assets.bank_fd || 0) + (profile.assets.debt_funds_bonds || 0);
+  const goldAssets = profile.assets.gold || 0;
+  const realEstate = profile.assets.real_estate_equity || 0;
+  
+  const equityPct = totalAssets > 0 ? (equityAssets / totalAssets) * 100 : 0;
+  const debtPct = totalAssets > 0 ? (debtAssets / totalAssets) * 100 : 0;
+  const goldPct = totalAssets > 0 ? (goldAssets / totalAssets) * 100 : 0;
+  
+  return `Asset Allocation Analysis Request:
+
+Current Portfolio:
+• Total Assets: ₹${totalAssets.toLocaleString()}
+• Equity (MF/Stocks): ₹${equityAssets.toLocaleString()} (${equityPct.toFixed(1)}%)
+• Debt (FD/Bonds): ₹${debtAssets.toLocaleString()} (${debtPct.toFixed(1)}%)
+• Gold: ₹${goldAssets.toLocaleString()} (${goldPct.toFixed(1)}%)
+• Real Estate: ₹${realEstate.toLocaleString()}
+
+Profile: Age ${profile.age || 'Not specified'}, Risk: ${profile.risk_profile}, Tax Regime: ${profile.tax_regime}
+
+Please provide:
+1. Ideal asset allocation for my age and risk profile
+2. Current allocation vs recommended allocation
+3. Rebalancing strategy and timeline
+4. Best investment vehicles for each asset class
+5. SIP recommendations for achieving target allocation`;
+};
+
+const generateInsurancePrompt = (profile: FinancialProfile) => {
+  const monthlyIncome = profile.monthly_income || 0;
+  const annualIncome = monthlyIncome * 12;
+  const currentTermLife = profile.risk_cover.term_life_sum_assured || 0;
+  const currentHealthCover = profile.risk_cover.health_cover_base || 0;
+  const dependents = profile.dependents || 0;
+  
+  const targetTermLife = annualIncome * 10;
+  const targetHealthCover = monthlyIncome > 50000 ? 1000000 : 500000;
+  
+  return `Insurance Coverage Analysis:
+
+Current Coverage:
+• Monthly Income: ₹${monthlyIncome.toLocaleString()}
+• Annual Income: ₹${annualIncome.toLocaleString()}
+• Dependents: ${dependents}
+• Current Term Life: ₹${currentTermLife.toLocaleString()}
+• Current Health Cover: ₹${currentHealthCover.toLocaleString()}
+
+Recommended Coverage:
+• Target Term Life: ₹${targetTermLife.toLocaleString()} (10x annual income)
+• Target Health Cover: ₹${targetHealthCover.toLocaleString()}
+
+Please provide:
+1. Insurance gap analysis (current vs recommended)
+2. Priority order for insurance purchase
+3. Best insurance products for my profile
+4. Premium optimization strategies
+5. Tax benefits under Section 80C and 80D`;
+};
+
+const generateTaxOptimizationPrompt = (profile: FinancialProfile) => {
+  const monthlyIncome = profile.monthly_income || 0;
+  const annualIncome = monthlyIncome * 12;
+  const taxRegime = profile.tax_regime;
+  const epf = profile.assets.epf || 0;
+  const nps = profile.assets.nps || 0;
+  
+  return `Tax Optimization Strategy Request:
+
+Income Profile:
+• Monthly Income: ₹${monthlyIncome.toLocaleString()}
+• Annual Income: ₹${annualIncome.toLocaleString()}
+• Tax Regime: ${taxRegime}
+• Current EPF: ₹${epf.toLocaleString()}
+• Current NPS: ₹${nps.toLocaleString()}
+
+Please provide:
+1. Old vs New tax regime comparison for my income
+2. Section 80C optimization (ELSS, EPF, PPF, etc.)
+3. Section 80D health insurance benefits
+4. HRA and home loan deductions
+5. LTCG tax optimization strategies
+6. NPS benefits and allocation strategy`;
+};
+
+const generateRetirementPrompt = (profile: FinancialProfile) => {
+  const age = profile.age || 30;
+  const monthlyIncome = profile.monthly_income || 0;
+  const retirementAge = 60;
+  const yearsToRetirement = retirementAge - age;
+  const currentEPF = profile.assets.epf || 0;
+  const currentNPS = profile.assets.nps || 0;
+  
+  const targetCorpus = monthlyIncome * 12 * 25; // 25x annual income
+  
+  return `Retirement Planning Analysis:
+
+Current Profile:
+• Age: ${age} years
+• Years to Retirement: ${yearsToRetirement} years
+• Monthly Income: ₹${monthlyIncome.toLocaleString()}
+• Target Retirement Corpus: ₹${targetCorpus.toLocaleString()} (25x annual income)
+
+Current Retirement Savings:
+• EPF: ₹${currentEPF.toLocaleString()}
+• NPS: ₹${currentNPS.toLocaleString()}
+
+Please provide:
+1. Retirement corpus calculation and gap analysis
+2. Monthly SIP amount needed to reach target
+3. Asset allocation for retirement portfolio
+4. EPF vs NPS vs other retirement options
+5. Tax benefits and optimization for retirement savings
+6. Withdrawal strategy during retirement`;
+};
+
 const FinancialBestPracticesAI: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState<string>('chat');
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -400,37 +569,55 @@ Would you prefer a **quick start** or a **deeper** best-practices walkthrough?`,
                       variant="outline" 
                       size="sm" 
                       className="w-full justify-start"
-                      onClick={() => setInputMessage("What should be my emergency fund target?")}
+                      onClick={() => setInputMessage(generateEmergencyFundPrompt(financialProfile))}
                     >
                       <Shield className="h-4 w-4 mr-2" />
-                      Emergency Fund
+                      Emergency Fund Analysis
                     </Button>
                     <Button 
                       variant="outline" 
                       size="sm" 
                       className="w-full justify-start"
-                      onClick={() => setInputMessage("How to prioritize debt repayment?")}
+                      onClick={() => setInputMessage(generateDebtStrategyPrompt(financialProfile))}
                     >
                       <CreditCard className="h-4 w-4 mr-2" />
-                      Debt Strategy
+                      Debt Repayment Strategy
                     </Button>
                     <Button 
                       variant="outline" 
                       size="sm" 
                       className="w-full justify-start"
-                      onClick={() => setInputMessage("What's a good asset allocation?")}
+                      onClick={() => setInputMessage(generateAssetAllocationPrompt(financialProfile))}
                     >
                       <TrendingUp className="h-4 w-4 mr-2" />
-                      Asset Allocation
+                      Asset Allocation Plan
                     </Button>
                     <Button 
                       variant="outline" 
                       size="sm" 
                       className="w-full justify-start"
-                      onClick={() => setInputMessage("How much insurance do I need?")}
+                      onClick={() => setInputMessage(generateInsurancePrompt(financialProfile))}
                     >
                       <Users className="h-4 w-4 mr-2" />
-                      Insurance Planning
+                      Insurance Coverage Analysis
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="w-full justify-start"
+                      onClick={() => setInputMessage(generateTaxOptimizationPrompt(financialProfile))}
+                    >
+                      <Calculator className="h-4 w-4 mr-2" />
+                      Tax Optimization Strategy
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="w-full justify-start"
+                      onClick={() => setInputMessage(generateRetirementPrompt(financialProfile))}
+                    >
+                      <PiggyBank className="h-4 w-4 mr-2" />
+                      Retirement Planning
                     </Button>
                   </div>
                 </Card>
@@ -628,60 +815,90 @@ Would you prefer a **quick start** or a **deeper** best-practices walkthrough?`,
               <Card className="p-6">
                 <h3 className="text-lg font-semibold mb-4">Educational Resources</h3>
                 <div className="space-y-3">
-                  <div className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50">
+                  <a 
+                    href="https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&ssid=0&smid=0" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
+                  >
                     <BookOpen className="h-5 w-5 text-blue-600" />
                     <div className="flex-1">
                       <p className="font-medium">SEBI Investor Education</p>
                       <p className="text-sm text-gray-600">Official investor protection guidelines</p>
                     </div>
                     <ExternalLink className="h-4 w-4 text-gray-400" />
-                  </div>
-                  <div className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50">
+                  </a>
+                  <a 
+                    href="https://www.incometax.gov.in/iec/foportal/help/individual/return-preparation/calculators" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
+                  >
                     <Calculator className="h-5 w-5 text-green-600" />
                     <div className="flex-1">
                       <p className="font-medium">Tax Calculator Tools</p>
                       <p className="text-sm text-gray-600">Income tax and LTCG calculators</p>
                     </div>
                     <ExternalLink className="h-4 w-4 text-gray-400" />
-                  </div>
-                  <div className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50">
+                  </a>
+                  <a 
+                    href="https://www.amfiindia.com/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
+                  >
                     <TrendingUp className="h-5 w-5 text-purple-600" />
                     <div className="flex-1">
                       <p className="font-medium">Mutual Fund Research</p>
                       <p className="text-sm text-gray-600">AMFI and fund house resources</p>
                     </div>
                     <ExternalLink className="h-4 w-4 text-gray-400" />
-                  </div>
+                  </a>
                 </div>
               </Card>
 
               <Card className="p-6">
                 <h3 className="text-lg font-semibold mb-4">Professional Services</h3>
                 <div className="space-y-3">
-                  <div className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50">
+                  <a 
+                    href="https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&ssid=0&smid=0" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
+                  >
                     <Users className="h-5 w-5 text-red-600" />
                     <div className="flex-1">
                       <p className="font-medium">SEBI Registered Advisors</p>
                       <p className="text-sm text-gray-600">Find certified investment advisors</p>
                     </div>
                     <ExternalLink className="h-4 w-4 text-gray-400" />
-                  </div>
-                  <div className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50">
+                  </a>
+                  <a 
+                    href="https://www.icai.org/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
+                  >
                     <FileText className="h-5 w-5 text-orange-600" />
                     <div className="flex-1">
                       <p className="font-medium">CA Services</p>
                       <p className="text-sm text-gray-600">Chartered Accountant consultation</p>
                     </div>
                     <ExternalLink className="h-4 w-4 text-gray-400" />
-                  </div>
-                  <div className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50">
+                  </a>
+                  <a 
+                    href="https://www.irdai.gov.in/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
+                  >
                     <Shield className="h-5 w-5 text-indigo-600" />
                     <div className="flex-1">
                       <p className="font-medium">Insurance Advisors</p>
                       <p className="text-sm text-gray-600">Licensed insurance professionals</p>
                     </div>
                     <ExternalLink className="h-4 w-4 text-gray-400" />
-                  </div>
+                  </a>
                 </div>
               </Card>
             </div>
