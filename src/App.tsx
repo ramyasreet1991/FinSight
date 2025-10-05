@@ -15,10 +15,10 @@ import IntegrationAnalysisFixed from './components/IntegrationAnalysisFixed'
 import EMICalculator from './components/EMICalculator'
 import IncomeIdeasFixed from './components/IncomeIdeasFixed'
 import TradingNewsRadar from './components/TradingNewsRadar'
-import MultibaggerAnalysis from './components/MultibaggerAnalysis'
+import EnhancedMultibaggerAnalysis from './components/EnhancedMultibaggerAnalysis'
 import LiveMultibaggerAnalysis from './components/LiveMultibaggerAnalysis'
 import FinancialBestPracticesAI from './components/FinancialBestPracticesAI'
-import NSEDataAnalysis from './components/NSEDataAnalysis'
+import EnhancedNSEDataAnalysis from './components/EnhancedNSEDataAnalysis'
 import DisclaimerPageSimple from './pages/DisclaimerPageSimple'
 import { Layout } from './components/Layout'
 
@@ -42,10 +42,10 @@ function App() {
           <Route path="/emi-calculator" element={<EMICalculator />} />
           <Route path="/income-ideas" element={<IncomeIdeasFixed />} />
           <Route path="/trading-news-radar" element={<TradingNewsRadar />} />
-          <Route path="/multibagger-analysis" element={<MultibaggerAnalysis />} />
+          <Route path="/multibagger-analysis" element={<EnhancedMultibaggerAnalysis />} />
                  <Route path="/live-multibagger" element={<LiveMultibaggerAnalysis />} />
                  <Route path="/financial-ai" element={<FinancialBestPracticesAI />} />
-                 <Route path="/nse-analysis" element={<NSEDataAnalysis />} />
+                 <Route path="/nse-analysis" element={<EnhancedNSEDataAnalysis />} />
                  <Route path="/disclaimer" element={<DisclaimerPageSimple />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
