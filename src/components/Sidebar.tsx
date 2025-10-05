@@ -21,7 +21,8 @@ import {
   Calculator,
   Lightbulb,
   Radio,
-  Star
+  Star,
+  Zap
 } from 'lucide-react'
 
 const navigation = [
@@ -39,6 +40,7 @@ const navigation = [
   { name: 'Integration Analysis', href: '/integration-analysis', icon: FileText },
   { name: 'Trading News Radar', href: '/trading-news-radar', icon: Radio },
   { name: 'Multibagger Analysis', href: '/multibagger-analysis', icon: Star },
+  { name: 'Live Multibagger', href: '/live-multibagger', icon: Zap },
   { name: 'EMI Calculator', href: '/emi-calculator', icon: Calculator },
   { name: 'Income Ideas', href: '/income-ideas', icon: Lightbulb },
   { name: 'Disclaimer', href: '/disclaimer', icon: AlertTriangle },
