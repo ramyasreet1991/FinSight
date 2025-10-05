@@ -77,7 +77,7 @@ interface MarketData {
 
 const HorizontalTabNavigation: React.FC = () => {
   const location = useLocation();
-  const [activeTab, setActiveTab] = useState<string>('markets');
+  const [activeTab, setActiveTab] = useState<string>('dashboard');
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
 
   const [marketData] = useState<MarketData>({
@@ -90,98 +90,98 @@ const HorizontalTabNavigation: React.FC = () => {
 
   const tabGroups: TabGroup[] = [
     {
-      id: 'markets',
-      label: 'Markets',
-      icon: Globe,
-      badge: 'Live',
+      id: 'dashboard',
+      label: 'Dashboard',
+      icon: Home,
+      badge: 'Overview',
       children: [
-        { id: 'stocks', label: 'Stocks', icon: TrendingUp, href: '/portfolio', description: 'Individual stock analysis' },
-        { id: 'indices', label: 'Indices', icon: BarChart3, href: '/analytics', description: 'Market indices tracking' },
-        { id: 'commodities', label: 'Commodities', icon: Coins, href: '/nifty-momentum', description: 'Gold, Oil, Silver prices' },
-        { id: 'forex', label: 'Forex', icon: DollarSign, href: '/feeds', description: 'Currency exchange rates' },
-        { id: 'crypto', label: 'Cryptocurrency', icon: Zap, href: '/trading', description: 'Digital currency markets', isNew: true },
-        { id: 'bonds', label: 'Bonds & Fixed Income', icon: Shield, href: '/backtest', description: 'Government & corporate bonds' },
-        { id: 'futures', label: 'Futures & Options', icon: Target, href: '/trading', description: 'Derivatives trading' },
-        { id: 'sectors', label: 'Sector Analysis', icon: PieChart, href: '/portfolio-manager', description: 'Industry sector performance' }
+        { id: 'main-dashboard', label: 'Main Dashboard', icon: Home, href: '/', description: 'Overview of all features' },
+        { id: 'portfolio', label: 'Portfolio View', icon: PieChart, href: '/portfolio', description: 'Your investment portfolio' },
+        { id: 'analytics', label: 'Analytics', icon: BarChart3, href: '/analytics', description: 'Market analytics & insights' },
+        { id: 'trading', label: 'Trading Dashboard', icon: Activity, href: '/trading', description: 'Trading interface' },
+        { id: 'backtest', label: 'Backtest Engine', icon: Play, href: '/backtest', description: 'Strategy backtesting' },
+        { id: 'feed-integration', label: 'Feed Integration', icon: RefreshCw, href: '/feeds', description: 'Data feed management' },
+        { id: 'nifty-momentum', label: 'Nifty Momentum', icon: TrendingUp, href: '/nifty-momentum', description: 'Smallcap momentum stocks' },
+        { id: 'portfolio-manager', label: 'Portfolio Manager', icon: Users, href: '/portfolio-manager', description: 'Advanced portfolio tools' }
       ]
     },
     {
       id: 'analysis',
-      label: 'Analysis',
+      label: 'Analysis Tools',
       icon: FileText,
       badge: 'Pro',
       children: [
-        { id: 'technical', label: 'Technical Analysis', icon: LineChart, href: '/advanced-analytics', description: 'Charts, indicators & patterns' },
-        { id: 'fundamental', label: 'Fundamental Analysis', icon: Building, href: '/tijori', description: 'Financial statements & ratios' },
-        { id: 'multibagger', label: 'Multibagger Analysis', icon: Star, href: '/multibagger-analysis', description: 'Growth stock identification' },
-        { id: 'live-analysis', label: 'Live Analysis', icon: Activity, href: '/live-multibagger', description: 'Real-time market analysis' },
-        { id: 'news-radar', label: 'News & Risk Radar', icon: Radio, href: '/trading-news-radar', description: 'AI-powered news analysis' },
-        { id: 'nse-analysis', label: 'NSE Data Analysis', icon: Database, href: '/nse-analysis', description: 'Official NSE data insights' },
-        { id: 'screener', label: 'Stock Screener', icon: Filter, href: '/integration-analysis', description: 'Advanced stock filtering' },
-        { id: 'backtest', label: 'Backtesting Engine', icon: Play, href: '/backtest', description: 'Strategy performance testing' }
+        { id: 'advanced-analytics', label: 'Advanced Analytics', icon: LineChart, href: '/advanced-analytics', description: 'Technical analysis tools' },
+        { id: 'tijori-analysis', label: 'Tijori Analysis', icon: Building, href: '/tijori', description: 'Fundamental analysis' },
+        { id: 'multibagger-analysis', label: 'Multibagger Analysis', icon: Star, href: '/multibagger-analysis', description: 'Growth stock identification' },
+        { id: 'live-multibagger', label: 'Live Multibagger', icon: Activity, href: '/live-multibagger', description: 'Real-time multibagger analysis' },
+        { id: 'trading-news-radar', label: 'Trading News Radar', icon: Radio, href: '/trading-news-radar', description: 'AI-powered news analysis' },
+        { id: 'nse-data-analysis', label: 'NSE Data Analysis', icon: Database, href: '/nse-analysis', description: 'Official NSE data insights' },
+        { id: 'integration-analysis', label: 'Integration Analysis', icon: Filter, href: '/integration-analysis', description: 'Platform integrations' },
+        { id: 'settings', label: 'Settings', icon: Settings, href: '/settings', description: 'Application settings' }
       ]
     },
     {
-      id: 'tools',
-      label: 'Tools',
+      id: 'calculators',
+      label: 'Calculators',
       icon: Calculator,
-      badge: '12',
+      badge: 'Tools',
       children: [
         { id: 'emi-calculator', label: 'EMI Calculator', icon: Calculator, href: '/emi-calculator', description: 'Loan EMI calculations' },
         { id: 'financial-ai', label: 'Financial AI Assistant', icon: MessageSquare, href: '/financial-ai', description: 'AI-powered financial guidance' },
         { id: 'income-ideas', label: 'Income Ideas', icon: Lightbulb, href: '/income-ideas', description: 'Business & investment opportunities' },
-        { id: 'portfolio-tracker', label: 'Portfolio Tracker', icon: PieChart, href: '/portfolio', description: 'Investment portfolio monitoring' },
-        { id: 'watchlist', label: 'Watchlist', icon: Eye, href: '/portfolio', description: 'Track favorite stocks', badge: '12' },
-        { id: 'alerts', label: 'Price Alerts', icon: Bell, href: '/portfolio', description: 'Custom price notifications', badge: '5' },
-        { id: 'currency-converter', label: 'Currency Converter', icon: DollarSign, href: '/feeds', description: 'Real-time currency rates' },
-        { id: 'tax-calculator', label: 'Tax Calculator', icon: CreditCard, href: '/emi-calculator', description: 'Income tax calculations' }
+        { id: 'tax-calculator', label: 'Tax Calculator', icon: CreditCard, href: '/emi-calculator', description: 'Income tax calculations' },
+        { id: 'investment-calculator', label: 'Investment Calculator', icon: Target, href: '/portfolio', description: 'Investment planning tools' },
+        { id: 'retirement-calculator', label: 'Retirement Calculator', icon: PiggyBank, href: '/financial-ai', description: 'Retirement planning' },
+        { id: 'sip-calculator', label: 'SIP Calculator', icon: TrendingUp, href: '/portfolio', description: 'Systematic investment planning' },
+        { id: 'goal-calculator', label: 'Goal Calculator', icon: Award, href: '/financial-ai', description: 'Financial goal planning' }
       ]
     },
     {
       id: 'news',
-      label: 'News',
+      label: 'News & Information',
       icon: Newspaper,
       badge: 'Live',
       children: [
-        { id: 'latest-news', label: 'Latest News', icon: Newspaper, href: '/news', description: 'Breaking financial news' },
-        { id: 'market-news', label: 'Market News', icon: TrendingUp, href: '/news', description: 'Market-moving headlines' },
-        { id: 'company-news', label: 'Company News', icon: Building, href: '/news', description: 'Corporate announcements' },
-        { id: 'economic-news', label: 'Economic News', icon: DollarSign, href: '/news', description: 'Economic indicators & reports' },
+        { id: 'news-feed', label: 'News Feed', icon: Newspaper, href: '/news', description: 'Latest financial news' },
+        { id: 'market-updates', label: 'Market Updates', icon: TrendingUp, href: '/news', description: 'Market-moving headlines' },
+        { id: 'company-announcements', label: 'Company Announcements', icon: Building, href: '/news', description: 'Corporate news' },
+        { id: 'economic-indicators', label: 'Economic Indicators', icon: DollarSign, href: '/news', description: 'Economic data & reports' },
         { id: 'sector-news', label: 'Sector News', icon: PieChart, href: '/news', description: 'Industry-specific updates' },
-        { id: 'global-news', label: 'Global Markets', icon: Globe, href: '/news', description: 'International market news' },
-        { id: 'earnings', label: 'Earnings Calendar', icon: Calendar, href: '/news', description: 'Upcoming earnings reports' },
-        { id: 'ipo-news', label: 'IPO & Listings', icon: TrendingUp, href: '/news', description: 'New stock listings' }
+        { id: 'global-markets', label: 'Global Markets', icon: Globe, href: '/news', description: 'International market news' },
+        { id: 'earnings-calendar', label: 'Earnings Calendar', icon: Calendar, href: '/news', description: 'Upcoming earnings reports' },
+        { id: 'ipo-listings', label: 'IPO & Listings', icon: TrendingUp, href: '/news', description: 'New stock listings' }
       ]
     },
     {
       id: 'portfolio',
-      label: 'Portfolio',
+      label: 'Portfolio Management',
       icon: PieChart,
       badge: 'Active',
       children: [
         { id: 'my-portfolio', label: 'My Portfolio', icon: PieChart, href: '/portfolio', description: 'View your investments' },
-        { id: 'performance', label: 'Performance', icon: BarChart3, href: '/analytics', description: 'Portfolio performance metrics' },
-        { id: 'transactions', label: 'Transactions', icon: Activity, href: '/portfolio', description: 'Buy/sell history' },
-        { id: 'dividends', label: 'Dividends', icon: DollarSign, href: '/portfolio', description: 'Dividend tracking' },
-        { id: 'tax-report', label: 'Tax Reports', icon: FileText, href: '/portfolio', description: 'Capital gains & tax reports' },
-        { id: 'goals', label: 'Financial Goals', icon: Target, href: '/financial-ai', description: 'Goal-based investing' },
-        { id: 'rebalancing', label: 'Rebalancing', icon: RefreshCw, href: '/portfolio', description: 'Portfolio rebalancing tools' },
-        { id: 'risk-analysis', label: 'Risk Analysis', icon: AlertTriangle, href: '/advanced-analytics', description: 'Portfolio risk assessment' }
+        { id: 'performance-metrics', label: 'Performance Metrics', icon: BarChart3, href: '/analytics', description: 'Portfolio performance analysis' },
+        { id: 'transaction-history', label: 'Transaction History', icon: Activity, href: '/portfolio', description: 'Buy/sell history' },
+        { id: 'dividend-tracking', label: 'Dividend Tracking', icon: DollarSign, href: '/portfolio', description: 'Dividend income tracking' },
+        { id: 'tax-reports', label: 'Tax Reports', icon: FileText, href: '/portfolio', description: 'Capital gains & tax reports' },
+        { id: 'financial-goals', label: 'Financial Goals', icon: Target, href: '/financial-ai', description: 'Goal-based investing' },
+        { id: 'portfolio-rebalancing', label: 'Portfolio Rebalancing', icon: RefreshCw, href: '/portfolio', description: 'Rebalancing tools' },
+        { id: 'risk-assessment', label: 'Risk Assessment', icon: AlertTriangle, href: '/advanced-analytics', description: 'Portfolio risk analysis' }
       ]
     },
     {
-      id: 'education',
-      label: 'Education',
+      id: 'resources',
+      label: 'Resources',
       icon: Bookmark,
       children: [
-        { id: 'tutorials', label: 'Trading Tutorials', icon: Play, href: '/disclaimer', description: 'Learn trading basics' },
-        { id: 'webinars', label: 'Webinars', icon: Users, href: '/disclaimer', description: 'Live educational sessions' },
-        { id: 'glossary', label: 'Financial Glossary', icon: FileText, href: '/disclaimer', description: 'Financial terms dictionary' },
+        { id: 'disclaimer', label: 'Disclaimer & Terms', icon: AlertTriangle, href: '/disclaimer', description: 'Legal information & disclaimers' },
+        { id: 'trading-tutorials', label: 'Trading Tutorials', icon: Play, href: '/disclaimer', description: 'Learn trading basics' },
+        { id: 'educational-webinars', label: 'Educational Webinars', icon: Users, href: '/disclaimer', description: 'Live educational sessions' },
+        { id: 'financial-glossary', label: 'Financial Glossary', icon: FileText, href: '/disclaimer', description: 'Financial terms dictionary' },
         { id: 'research-reports', label: 'Research Reports', icon: FileText, href: '/disclaimer', description: 'In-depth market research' },
-        { id: 'courses', label: 'Online Courses', icon: Award, href: '/disclaimer', description: 'Structured learning paths' },
-        { id: 'disclaimer', label: 'Disclaimer & Terms', icon: AlertTriangle, href: '/disclaimer', description: 'Legal information' },
+        { id: 'online-courses', label: 'Online Courses', icon: Award, href: '/disclaimer', description: 'Structured learning paths' },
         { id: 'faq', label: 'FAQ', icon: MessageSquare, href: '/disclaimer', description: 'Frequently asked questions' },
-        { id: 'support', label: 'Help & Support', icon: ExternalLink, href: '/disclaimer', description: 'Customer support' }
+        { id: 'help-support', label: 'Help & Support', icon: ExternalLink, href: '/disclaimer', description: 'Customer support' }
       ]
     }
   ];
