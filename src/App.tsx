@@ -13,7 +13,7 @@ import AdvancedAnalytics from './components/AdvancedAnalytics'
 import PortfolioManagerSimple from './components/PortfolioManagerSimple'
 import IntegrationAnalysisFixed from './components/IntegrationAnalysisFixed'
 import EMICalculator from './components/EMICalculator'
-import IncomeIdeas from './components/IncomeIdeas'
+import IncomeIdeasFixed from './components/IncomeIdeasFixed'
 import DisclaimerPageSimple from './pages/DisclaimerPageSimple'
 import { Layout } from './components/Layout'
 import DisclaimerBanner from './components/DisclaimerBanner'
@@ -37,7 +37,7 @@ function App() {
           <Route path="/portfolio-manager" element={<PortfolioManagerSimple />} />
           <Route path="/integration-analysis" element={<IntegrationAnalysisFixed />} />
           <Route path="/emi-calculator" element={<EMICalculator />} />
-          <Route path="/income-ideas" element={<IncomeIdeas />} />
+          <Route path="/income-ideas" element={<IncomeIdeasFixed />} />
           <Route path="/disclaimer" element={<DisclaimerPageSimple />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
