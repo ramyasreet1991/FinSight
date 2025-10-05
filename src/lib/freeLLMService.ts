@@ -148,11 +148,11 @@ Use this context to provide more relevant guidance while maintaining that this i
       }
       
       // If all free models fail, return fallback response
-      return this.getFallbackResponse(context.currentQuery);
+      return this.getFallbackResponse(messages[messages.length - 1]?.content || 'General financial guidance');
       
     } catch (error) {
       console.error('LLM Service Error:', error);
-      return this.getFallbackResponse(context.currentQuery);
+      return this.getFallbackResponse(messages[messages.length - 1]?.content || 'General financial guidance');
     }
   }
 

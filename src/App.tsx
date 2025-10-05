@@ -37,7 +37,7 @@ function App() {
           <Route path="/nifty-momentum" element={<NiftyMomentumPortfolioSimple />} />
           <Route path="/news" element={<NewsFeed />} />
           <Route path="/tijori" element={<TijoriAnalysis />} />
-          <Route path="/analytics" element={<AdvancedAnalytics />} />
+          <Route path="/advanced-analytics" element={<AdvancedAnalytics />} />
           <Route path="/portfolio-manager" element={<PortfolioManagerSimple />} />
           <Route path="/integration-analysis" element={<IntegrationAnalysisFixed />} />
           <Route path="/emi-calculator" element={<EMICalculator />} />

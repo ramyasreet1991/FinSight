@@ -318,11 +318,35 @@ Would you prefer a **quick start** or a **deeper** best-practices walkthrough?`,
                           }`}
                         >
                           <div className="prose prose-sm max-w-none">
-                            {message.content.split('\n').map((line, index) => (
-                              <p key={index} className="mb-2 last:mb-0">
-                                {line}
-                              </p>
-                            ))}
+                            {message.content.split('\n').map((line, index) => {
+                              // Handle empty lines
+                              if (line.trim() === '') {
+                                return <br key={index} />;
+                              }
+                              
+                              // Handle markdown-style bold text
+                              const formattedLine = line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                              
+                              // Handle bullet points
+                              if (line.trim().startsWith('•') || line.trim().startsWith('-')) {
+                                return (
+                                  <div key={index} className="flex items-start mb-1">
+                                    <span className="mr-2">•</span>
+                                    <span 
+                                      dangerouslySetInnerHTML={{ __html: formattedLine.replace(/^[•\-]\s*/, '') }}
+                                      className="flex-1"
+                                    />
+                                  </div>
+                                );
+                              }
+                              
+                              // Handle regular paragraphs
+                              return (
+                                <p key={index} className="mb-2 last:mb-0">
+                                  <span dangerouslySetInnerHTML={{ __html: formattedLine }} />
+                                </p>
+                              );
+                            })}
                           </div>
                           <div className={`text-xs mt-2 ${
                             message.type === 'user' ? 'text-blue-100' : 'text-gray-500'

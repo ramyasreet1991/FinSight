@@ -36,7 +36,7 @@ const navigation = [
   { name: 'Smallcap Momentum', href: '/nifty-momentum', icon: Zap },
   { name: 'News Feed', href: '/news', icon: Newspaper },
   { name: 'Tijori Analysis', href: '/tijori', icon: Building },
-  { name: 'Advanced Analytics', href: '/analytics', icon: LineChart },
+  { name: 'Advanced Analytics', href: '/advanced-analytics', icon: LineChart },
   { name: 'Portfolio Manager', href: '/portfolio-manager', icon: Users },
   { name: 'Integration Analysis', href: '/integration-analysis', icon: FileText },
   { name: 'Trading News Radar', href: '/trading-news-radar', icon: Radio },

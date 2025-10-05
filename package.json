@@ -1,6 +1,7 @@
 {
   "name": "finsight",
   "version": "1.0.0",
+  "type": "module",
   "description": "Financial Insights Dashboard - A comprehensive financial analytics and investment tracking platform",
   "main": "index.js",
   "scripts": {
