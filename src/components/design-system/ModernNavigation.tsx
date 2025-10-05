@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
   Home, 
@@ -23,7 +23,9 @@ import {
   Coins,
   Zap,
   Target,
-  Shield
+  Shield,
+  ChevronDown,
+  MoreHorizontal
 } from 'lucide-react';
 import { designTokens, formatCurrency, formatPercentage } from './DesignTokens';
 
@@ -46,6 +48,22 @@ interface MarketData {
 const ModernNavigation: React.FC = () => {
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
+  const [showMoreMenu, setShowMoreMenu] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowMoreMenu(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   // Live market data
   const marketData: MarketData[] = [
@@ -55,50 +73,152 @@ const ModernNavigation: React.FC = () => {
     { symbol: 'GOLD', value: 71580, change: 450, changePercent: 0.63 }
   ];
 
-  const navigationItems: NavigationItem[] = [
+  // Primary navigation items (always visible)
+  const primaryNavItems: NavigationItem[] = [
     {
       id: 'dashboard',
-      label: 'Market',
+      label: 'Dashboard',
       icon: Home,
       href: '/',
       description: 'Market overview and insights'
     },
     {
-      id: 'sectors',
-      label: 'Sectors',
-      icon: Building2,
-      href: '/portfolio-manager',
-      badge: 'Live',
-      description: 'Sector performance analysis'
+      id: 'portfolio',
+      label: 'Portfolio',
+      icon: PieChart,
+      href: '/portfolio',
+      description: 'Portfolio management'
     },
     {
-      id: 'stocks',
-      label: 'Stocks',
+      id: 'analytics',
+      label: 'Analytics',
+      icon: BarChart3,
+      href: '/analytics',
+      description: 'Market analytics'
+    },
+    {
+      id: 'trading',
+      label: 'Trading',
+      icon: Activity,
+      href: '/trading',
+      description: 'Trading dashboard'
+    },
+    {
+      id: 'nifty-momentum',
+      label: 'Nifty Momentum',
       icon: TrendingUp,
-      href: '/portfolio',
-      description: 'Individual stock analysis'
+      href: '/nifty-momentum',
+      badge: 'Live',
+      description: 'Smallcap momentum stocks'
     },
     {
-      id: 'reports',
-      label: 'Reports',
-      icon: FileText,
+      id: 'multibagger',
+      label: 'Multibagger',
+      icon: Zap,
+      href: '/multibagger-analysis',
+      description: 'Growth stock analysis'
+    },
+    {
+      id: 'financial-ai',
+      label: 'Financial AI',
+      icon: MessageSquare,
+      href: '/financial-ai',
+      description: 'AI financial guidance'
+    }
+  ];
+
+  // Secondary navigation items (in dropdown)
+  const secondaryNavItems: NavigationItem[] = [
+    {
+      id: 'nse-analysis',
+      label: 'NSE Analysis',
+      icon: Database,
       href: '/nse-analysis',
-      description: 'NSE data reports'
+      description: 'Official NSE data'
     },
     {
-      id: 'alerts',
-      label: 'Alerts',
+      id: 'news',
+      label: 'News',
+      icon: FileText,
+      href: '/news',
+      description: 'Market news feed'
+    },
+    {
+      id: 'calculators',
+      label: 'Calculators',
+      icon: Calculator,
+      href: '/emi-calculator',
+      description: 'Financial calculators'
+    },
+    {
+      id: 'income-ideas',
+      label: 'Income Ideas',
+      icon: Lightbulb,
+      href: '/income-ideas',
+      description: 'Business opportunities'
+    },
+    {
+      id: 'backtest',
+      label: 'Backtest',
+      icon: BarChart3,
+      href: '/backtest',
+      description: 'Strategy backtesting'
+    },
+    {
+      id: 'feeds',
+      label: 'Feed Integration',
+      icon: RefreshCw,
+      href: '/feeds',
+      description: 'Data feed management'
+    },
+    {
+      id: 'tijori',
+      label: 'Tijori Analysis',
+      icon: Building2,
+      href: '/tijori',
+      description: 'Fundamental analysis'
+    },
+    {
+      id: 'trading-news-radar',
+      label: 'News Radar',
       icon: Bell,
-      href: '/portfolio',
-      badge: '5',
-      description: 'Price and delivery alerts'
+      href: '/trading-news-radar',
+      description: 'AI-powered news analysis'
     },
     {
-      id: 'learn',
-      label: 'Learn',
-      icon: BookOpen,
-      href: '/disclaimer',
-      description: 'Educational resources'
+      id: 'live-multibagger',
+      label: 'Live Multibagger',
+      icon: Activity,
+      href: '/live-multibagger',
+      description: 'Real-time multibagger analysis'
+    },
+    {
+      id: 'advanced-analytics',
+      label: 'Advanced Analytics',
+      icon: BarChart3,
+      href: '/advanced-analytics',
+      description: 'Technical analysis tools'
+    },
+    {
+      id: 'portfolio-manager',
+      label: 'Portfolio Manager',
+      icon: PieChart,
+      href: '/portfolio-manager',
+      description: 'Advanced portfolio tools'
+    },
+    {
+      id: 'integration-analysis',
+      label: 'Integration Analysis',
+      icon: Database,
+      href: '/integration-analysis',
+      description: 'Platform integrations'
+    },
+    {
+      id: 'settings',
+      label: 'Settings',
+      icon: Settings,
+      href: '/settings',
+      description: 'App settings'
     }
   ];
 
@@ -200,7 +320,8 @@ const ModernNavigation: React.FC = () => {
       <div className="bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <nav className="flex space-x-8">
-            {navigationItems.map((item) => {
+            {/* Primary Navigation Items */}
+            {primaryNavItems.map((item) => {
               const isActive = location.pathname === item.href || 
                 (item.href === '/' && location.pathname === '/');
               
@@ -236,6 +357,55 @@ const ModernNavigation: React.FC = () => {
                 </Link>
               );
             })}
+            
+            {/* More Dropdown */}
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setShowMoreMenu(!showMoreMenu)}
+                className={`relative flex items-center space-x-2 py-4 px-2 border-b-2 transition-colors ${
+                  showMoreMenu || secondaryNavItems.some(item => location.pathname === item.href)
+                    ? 'border-blue-500 text-blue-600'
+                    : 'border-transparent text-gray-600 hover:text-gray-900 hover:border-gray-300'
+                }`}
+              >
+                <MoreHorizontal className="h-4 w-4" />
+                <span 
+                  className="font-medium"
+                  style={{ fontSize: designTokens.typography.fontSize.sm }}
+                >
+                  More
+                </span>
+                <ChevronDown className={`h-3 w-3 transition-transform ${showMoreMenu ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {/* Dropdown Menu */}
+              {showMoreMenu && (
+                <div className="absolute top-full left-0 mt-1 w-64 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                  <div className="py-2">
+                    {secondaryNavItems.map((item) => {
+                      const isActive = location.pathname === item.href;
+                      
+                      return (
+                        <Link
+                          key={item.id}
+                          to={item.href}
+                          onClick={() => setShowMoreMenu(false)}
+                          className={`flex items-center space-x-3 px-4 py-3 hover:bg-gray-50 transition-colors ${
+                            isActive ? 'bg-blue-50 text-blue-600' : 'text-gray-700'
+                          }`}
+                        >
+                          <item.icon className="h-4 w-4" />
+                          <div>
+                            <div className="font-medium text-sm">{item.label}</div>
+                            <div className="text-xs text-gray-500">{item.description}</div>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
           </nav>
         </div>
       </div>
