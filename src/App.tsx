@@ -14,6 +14,8 @@ import PortfolioManagerSimple from './components/PortfolioManagerSimple'
 import IntegrationAnalysisFixed from './components/IntegrationAnalysisFixed'
 import EMICalculator from './components/EMICalculator'
 import IncomeIdeasFixed from './components/IncomeIdeasFixed'
+import TradingNewsRadar from './components/TradingNewsRadar'
+import MultibaggerAnalysis from './components/MultibaggerAnalysis'
 import DisclaimerPageSimple from './pages/DisclaimerPageSimple'
 import { Layout } from './components/Layout'
 import DisclaimerBanner from './components/DisclaimerBanner'
@@ -38,6 +40,8 @@ function App() {
           <Route path="/integration-analysis" element={<IntegrationAnalysisFixed />} />
           <Route path="/emi-calculator" element={<EMICalculator />} />
           <Route path="/income-ideas" element={<IncomeIdeasFixed />} />
+          <Route path="/trading-news-radar" element={<TradingNewsRadar />} />
+          <Route path="/multibagger-analysis" element={<MultibaggerAnalysis />} />
           <Route path="/disclaimer" element={<DisclaimerPageSimple />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
