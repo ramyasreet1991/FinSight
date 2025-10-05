@@ -1,6 +1,6 @@
 import React from 'react'
-import { Card } from '../components/ui/card'
-import { Badge } from '../components/ui/badge'
+import { Card } from '../ui/card'
+import { Badge } from '../ui/badge'
 import { TrendingUp, Activity, BarChart3, PieChart } from 'lucide-react'
 
 export function Dashboard() {
